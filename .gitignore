@@ -1,0 +1,33 @@
+node_modules
+static/favicon.ico
+src/routes/contact/+page.svelte
+src/routes/terms/+page.svelte
+src/routes/privacy/+page.svelte
+src/routes/copyright/+page.svelte
+
+src/lib/config.json
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+.idea
+.vscode

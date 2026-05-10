@@ -1,0 +1,98 @@
+* {
+    font-size: 16px;
+    color: var(--text-primary);
+    font-family: var(--font), sans-serif;
+}
+
+h2 {
+    font-size: 1.25em;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+pre, .monospace {
+    font-family: var(--font-mono), monospace;
+}
+
+body {
+    background-color: var(--background-primary);
+    margin: 0;
+}
+
+button, .button {
+    padding: 5px 10px;
+    background-color: var(--accent-primary);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
+    vertical-align: central;
+}
+
+.dangerous-button {
+    background-color: var(--fluxer-brand-primary-light);
+    border: var(--accent-danger) 2px solid;
+    color: var(--text-on-fluxer-brand-primary);
+}
+.dangerous-button svg {
+    stroke: var(--text-on-fluxer-brand-primary);
+}
+
+.green-button {
+    background-color: var(--background-primary);
+    border: var(--accent-success) 3px solid;
+}
+
+.yellow-button {
+    background-color: var(--background-primary);
+    border: var(--accent-warning) 3px solid;
+}
+
+button:hover, .button:hover {
+    background-color: var(--accent-secondary);
+}
+
+.dangerous-button:hover {
+    background-color: var(--accent-danger);
+}
+
+.green-button:hover {
+    background-color: var(--accent-success-secondary);
+    border: var(--fluxer-brand-primary-light) 3px solid;
+}
+
+.yellow-button:hover {
+    background-color: var(--accent-warning-secondary);
+    border: var(--fluxer-brand-primary-light) 3px solid;
+}
+
+.avatar {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.wrap-scrollable-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+ul {
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+input, textarea, select, option {
+    background-color: var(--background-textarea);
+    padding: 5px 10px;
+    border: var(--accent-primary) 2px solid;
+    border-radius: 10px;
+}
+
+textarea {
+    resize: vertical;
+}
