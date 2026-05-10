@@ -1,5 +1,5 @@
 {
-	"api_url": "http://localhost:8080/api/v1",
+	"api_url": "https://api.fishingbucket.org/api/v1",
 	"bot_invite_link": "https://web.fluxer.app/oauth2/authorize?client_id=1471373152818077943&scope=bot&permissions=137976212560",
 	"hq_server_invite": "https://fluxer.gg/jpXCwfto"
 }
