@@ -253,10 +253,12 @@
 
 	async function save() {
 		let json = $state.snapshot(new BatchEdit(edits).toJSON());
-		console.log(json);
 		let { error: e, body } = await post("/edit", json, auth);
-		if (e) error = e;
-		console.log(body);
+		if (e) {
+			error = e;
+			return;
+		}
+		console.log(body); // idc i prolly dont use this here
 		await populate_data();
 		save_confirmation = true;
 		edits.splice(0, edits.length);
