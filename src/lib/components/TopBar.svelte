@@ -87,7 +87,7 @@
 
 {#if menu_open}
 	<nav class="mobile-nav" transition:fly={{ y: -20, duration: 200 }}>
-		<a style="font-size: 1.5em; color: var(--text-primary)" href="{resolve('/')}" class="button">Fishing Bucket</a>
+		<a style="font-size: 1.5em; color: var(--text-primary)" href="{resolve('/')}" class="button" onclick={() => { menu_open = false; }}>Fishing Bucket</a>
 		{#if auth && user}
 			<a href="{resolve('/dashboard')}" onclick={() => { menu_open = false; }}>Dashboard</a>
 		{/if}
