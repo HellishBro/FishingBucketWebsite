@@ -20,7 +20,7 @@
 	let menu_open = $state(false);
 
 	async function logout() {
-		await post<object>("/auth/logout", auth!);
+		await post<object>("/auth/logout", {}, auth!);
 		window.localStorage.removeItem("user");
 		window.localStorage.removeItem("session_id");
 		window.location.href = resolve("/");
