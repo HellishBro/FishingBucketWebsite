@@ -2,7 +2,7 @@
 	import { Menu } from "@lucide/svelte";
 	import { default as config } from "$lib/config.json";
 	import { onMount } from 'svelte';
-	import { get_auth, get } from '$lib/api';
+	import { get_auth, post } from '$lib/api';
 	import { type FluxerUser, get_user, get_user_avatar } from '$lib/fluxer';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
@@ -20,7 +20,7 @@
 	let menu_open = $state(false);
 
 	async function logout() {
-		await get<object>("/auth/logout", auth!);
+		await post<object>("/auth/logout", auth!);
 		window.localStorage.removeItem("user");
 		window.localStorage.removeItem("session_id");
 		window.location.href = resolve("/");
