@@ -2,14 +2,14 @@
 	import "$lib/assets/themes/fluxer-dark.css"
 	import '$lib/assets/common.css';
 	import TopBar from '$lib/components/TopBar.svelte';
-	import { type FluxerUser, get_user } from '$lib/fluxer';
+	import { type User, get_user } from '$lib/user';
 	import { onMount, setContext } from 'svelte';
 	import { get_auth } from '$lib/api';
 
 	let { children } = $props();
 
 	let auth: string | null = $state(null);
-	let user: FluxerUser | null = $state(null);
+	let user: User | null = $state(null);
 
 	onMount(() => {
 		auth = get_auth();

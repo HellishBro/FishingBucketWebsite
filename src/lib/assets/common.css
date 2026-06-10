@@ -55,6 +55,14 @@ button:hover, .button:hover {
     background-color: var(--accent-secondary);
 }
 
+.discord {
+    background-color: #5865F2;
+}
+
+.discord:hover {
+    background-color: color-mix(in srgb, #5865F2 75%, #000000 25%);
+}
+
 .dangerous-button:hover {
     background-color: var(--accent-danger);
 }
@@ -95,4 +103,15 @@ input, textarea, select, option {
 
 textarea {
     resize: vertical;
+}
+
+.iconed-button {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.med-font {
+    font-size: 1.25em;
 }

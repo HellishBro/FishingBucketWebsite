@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { default as config } from "$lib/config.json";
-	import { Plus, Cog } from "@lucide/svelte";
-	import { type FluxerUser } from '$lib/fluxer';
+	import { Cog } from "@lucide/svelte";
+	import { type FluxerUser } from '$lib/user';
 	import { resolve } from '$app/paths';
 	import { getContext } from 'svelte';
+	import FluxerIcon from "$lib/components/FluxerIcon.svelte";
+	import DiscordIcon from "$lib/components/DiscordIcon.svelte";
 
 	let auth: string | null = $derived(getContext<() => string | null>("get_auth")());
 	let user: FluxerUser | null = $derived(getContext<() => FluxerUser | null>("get_user")());
@@ -16,14 +18,15 @@
 <!-- eslint-disable svelte/no-navigation-without-resolve -->
 
 <div class="wrap-scrollable-container">
-	<div style="text-align: center; width: 100%;">
-		<h1>Fishing Bucket</h1>
-		<div style="height: auto; gap: 5px;">
-			<a class="button" href="{config.bot_invite_link}" style="font-size: 1.25em; display: inline-flex; gap: 5px;"><Plus></Plus> Add to Community</a>
-			{#if auth && user}
-				<a class="button" href="{resolve('/dashboard')}" style="font-size: 1.25em; display: inline-flex; gap: 5px;"><Cog></Cog> Go to Dashboard</a>
-			{/if}
+	<div style="text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px;">
+		<h1 style="margin-bottom: 0;">Fishing Bucket</h1>
+		<div style="height: auto; gap: 5px; display: flex; flex-direction: row; text-align: center;">
+			<a class="button iconed-button med-font" href="{config.bot_invite_link}"><FluxerIcon></FluxerIcon> Add to Fluxer</a>
+			<a class="button iconed-button med-font discord" href="{config.bot_invite_link}"><DiscordIcon></DiscordIcon> Add to Discord</a>
 		</div>
+		{#if auth && user}
+			<a class="button iconed-button med-font" href="{resolve('/dashboard')}"><Cog></Cog> Go to Dashboard</a>
+		{/if}
 	</div>
 
 	<div class="cards" style="margin-top: 25px;">
@@ -45,7 +48,7 @@
 		<div class="card">
 			<h2 id="proxies">Proxies</h2>
 			<p>
-				Proxies are faux Fluxer profiles that can be used to send messages through, as long as Fishing Bucket has access to the channel, and you have permission to use proxies in that channel.
+				Proxies are faux profiles that can be used to send messages through, as long as Fishing Bucket has access to the channel, and you have permission to use proxies in that channel.
 				<br>
 				Proxies can be used via invoking its <a href="#trigger">trigger</a>, which is essentially a pattern that Fishing Bucket tries to search for in messages.
 			</p>
@@ -102,7 +105,7 @@
 
 		<div class="card">
 			<h2 id="more">And More!</h2>
-			<p>This information panel is a non-exhaustive list of all the features that Fishing Bucket offers. To see a full list of features, please await, or join our <a href="{config.hq_server_invite}">Fluxer community</a>! Where you can pester me, the developer, about finishing this website.</p>
+			<p>This information panel is a non-exhaustive list of all the features that Fishing Bucket offers. To see a full list of features, please await, or join our <a href="{config.hq_server_invite}">Fluxer</a> or <a href="{config.hq_discord_invite}">Discord</a> communities! Where you can pester me, the developer, about finishing this website.</p>
 		</div>
 	</div>
 </div>

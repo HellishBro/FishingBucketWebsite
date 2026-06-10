@@ -8,7 +8,7 @@
 
 <script lang="ts">
 	import { Plus, Save, RotateCcw } from "@lucide/svelte"
-	import type { FluxerUser } from '$lib/fluxer';
+	import type { FluxerUser } from '$lib/user';
 	import {
 		BatchEdit,
 		DeleteProxyEdit, DeleteProxyGroupEdit,

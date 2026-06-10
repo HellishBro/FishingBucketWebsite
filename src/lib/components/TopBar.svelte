@@ -1,15 +1,13 @@
 <script lang="ts">
 	import { Menu } from "@lucide/svelte";
-	import { default as config } from "$lib/config.json";
 	import { onMount } from 'svelte';
 	import { get_auth, post } from '$lib/api';
-	import { type FluxerUser, get_user, get_user_avatar } from '$lib/fluxer';
+	import { type User, get_user, get_user_avatar } from '$lib/user';
 	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
 	import { fly } from "svelte/transition";
 
 	let auth: string | null = $state(null);
-	let user: FluxerUser | null = $state(null);
+	let user: User | null = $state(null);
 
 	onMount(() => {
 		auth = get_auth();
@@ -74,13 +72,11 @@
 					expand_user_settings = !expand_user_settings;
 				}}>
 					<img src={get_user_avatar(160)} style="width: 2.5em; height: 2.5em;" alt="User avatar" class="avatar" />
-					<span>{user.global_name}</span>
+					<span>{user.user.global_name}</span>
 				</button>
 			</div>
 		{:else}
-			<button onclick={() => {
-				window.location.href = config.api_url + "/auth?redirect_uri=" + encodeURI(page.url.origin + "/redirect");
-			}}><span style="display: inline-block; line-height: 2.5em;">Login</span></button>
+			<a href="{resolve('/login')}" class="button" style="padding: 0.75em;">Login</a>
 		{/if}
 	</div>
 </nav>
@@ -146,16 +142,16 @@
     .desktop-nav-links {
         display: flex;
         gap: 10px;
-				flex-grow: 1;
-				overflow-x: auto;
+		flex-grow: 1;
+		overflow-x: auto;
     }
 
-		.hamburger {
-				aspect-ratio: 1;
-				width: auto;
-				display: flex;
-				align-items: center;
-		}
+	.hamburger {
+		aspect-ratio: 1;
+		width: auto;
+		display: flex;
+		align-items: center;
+	}
 
     .mobile-nav {
         position: fixed;
