@@ -2,9 +2,13 @@
 
 * {
     font-size: 16px;
-    color: var(--text-primary);
     font-family: var(--font), sans-serif;
     box-sizing: border-box;
+	transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+p, h1, h2, h3, h4, h5, button, label {
+    color: var(--text-primary);
 }
 
 h1 {
@@ -118,11 +122,27 @@ button:hover, .button:hover {
 }
 
 .discord {
-    background-color: #5865F2;
+    background-color: var(--discord-brand-primary) !important;
 }
 
 .discord:hover {
-    background-color: #4752C4;
+    background-color: var(--discord-brand-secondary) !important;
+}
+
+.fluxer {
+    background-color: var(--fluxer-brand-primary) !important;
+}
+
+.fluxer:hover {
+    background-color: var(--fluxer-brand-secondary) !important;
+}
+
+.fluxer-text {
+    color: var(--fluxer-brand-primary) !important;
+}
+
+.discord-text {
+    color: var(--discord-brand-primary) !important;
 }
 
 .avatar {

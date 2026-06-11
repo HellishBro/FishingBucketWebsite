@@ -57,13 +57,12 @@
 
 <nav>
 	<div class="nav-container">
-		<div class="logo">
-			<a href="{resolve('/')}" class="logo-link">
-				Fishing Bucket
-			</a>
-		</div>
-
 		<div class="desktop-nav-links">
+			<div class="logo">
+				<a href="{resolve('/')}" class="logo-link">
+					Fishing Bucket
+				</a>
+			</div>
 			{#if auth && user}
 				<a href="{resolve('/dashboard')}" class="nav-link">Dashboard</a>
 			{/if}
@@ -83,7 +82,7 @@
 						<span class="user-name">{user.user.global_name}</span>
 					</button>
 					{#if expand_user_settings}
-						<div class="user-dropdown" transition:fly={{
+						<div class="user-dropdown dropdown-menu" transition:fly={{
 							duration: 200,
 							y: -10
 						}}>
@@ -100,14 +99,14 @@
 						<ChevronDown></ChevronDown>
 					</button>
 					{#if login_dropdown_open}
-						<div class="login-dropdown-menu" transition:fly={{
+						<div class="login-dropdown-menu dropdown-menu" transition:fly={{
 							duration: 200,
 							y: -10
 						}}>
-							<a href="{fluxer_redirect_uri}" rel="external" class="dropdown-item fluxer">
+							<a href="{fluxer_redirect_uri}" rel="external" class="dropdown-item">
 								<FluxerIcon></FluxerIcon> Fluxer
 							</a>
-							<a href="{discord_redirect_uri}" rel="external" class="dropdown-item discord">
+							<a href="{discord_redirect_uri}" rel="external" class="dropdown-item">
 								<DiscordIcon></DiscordIcon> Discord
 							</a>
 						</div>
@@ -128,7 +127,7 @@
 
 {#if menu_open}
 	<button class="mobile-nav-overlay" onclick={() => {menu_open = false}} transition:fade={{ duration: 200 }} aria-label="Close menu"></button>
-	<nav class="mobile-nav" transition:fly={{ x: 300, duration: 200 }}>
+	<nav class="mobile-nav" transition:fly={{ x: -300, duration: 200 }}>
 		<div class="mobile-nav-content">
 			<a href="{resolve('/')}" class="mobile-nav-link" onclick={() => { menu_open = false; }}>Home</a>
 			{#if auth && user}
@@ -181,7 +180,6 @@
 		color: var(--text-primary);
 		text-decoration: none;
 		letter-spacing: -0.02em;
-		transition: color 0.2s ease;
 	}
 
 	.logo-link:hover {
@@ -200,7 +198,6 @@
 		text-decoration: none;
 		font-weight: 500;
 		font-size: 0.95rem;
-		transition: color 0.2s ease;
 		position: relative;
 	}
 
@@ -265,7 +262,6 @@
 	.user-dropdown {
 		position: absolute;
 		top: calc(100% + 0.5rem);
-		right: 0;
 		background-color: var(--background-secondary);
 		border: 1px solid var(--border-color);
 		border-radius: 8px;
@@ -283,6 +279,9 @@
 		text-align: left;
 		cursor: pointer;
 		font-weight: 500;
+		display: flex;
+		gap: 5px;
+		align-items: center;
 	}
 
 	.dropdown-item:hover {
@@ -310,7 +309,6 @@
 	.login-dropdown-menu {
 		position: absolute;
 		top: calc(100% + 0.5rem);
-		right: 0;
 		background-color: var(--background-secondary);
 		border: 1px solid var(--border-color);
 		border-radius: 8px;
@@ -335,16 +333,12 @@
 		text-decoration: none;
 	}
 
+	.dropdown-menu {
+		right: 0;
+	}
+
 	.login-dropdown-menu .dropdown-item:hover {
 		background-color: var(--background-tertiary);
-	}
-
-	.login-dropdown-menu .dropdown-item.fluxer {
-		color: var(--accent-primary);
-	}
-
-	.login-dropdown-menu .dropdown-item.discord {
-		color: #5865F2;
 	}
 
 	.hamburger {
@@ -354,6 +348,7 @@
 		padding: 0.5rem;
 		cursor: pointer;
 		color: var(--text-primary);
+		margin-left: auto;
 	}
 
 	.hamburger:hover {
@@ -400,6 +395,9 @@
 		font-size: 1.1rem;
 		padding: 0.75rem 1rem;
 		border-radius: 8px;
+		display: flex;
+		gap: 5px;
+		align-items: center;
 	}
 
 	.mobile-nav-link:hover {
@@ -415,8 +413,9 @@
 			display: flex;
 		}
 
-		.user-name {
-			display: none;
+		.dropdown-menu {
+			right: auto;
+			left: 0;
 		}
 	}
 

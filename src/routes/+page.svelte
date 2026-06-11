@@ -23,7 +23,7 @@
 			<img src={favicon} alt="Fishing Bucket" class="hero-avatar" />
 			<h1 class="hero-title">Fishing Bucket</h1>
 			<div class="hero-buttons">
-				<a class="button primary-button" href="{config.bot_invite_link}" rel="external">
+				<a class="button primary-button fluxer" href="{config.bot_invite_link}" rel="external">
 					<FluxerIcon></FluxerIcon> Add to Fluxer
 				</a>
 				<a class="button secondary-button discord" href="{config.bot_invite_link_discord}" rel="external">
@@ -109,10 +109,10 @@
 		<h2>Ready to Get Started?</h2>
 		<p>Be among the thousands of proxies already created</p>
 		<div class="cta-buttons">
-			<a class="button primary-button" href="{config.bot_invite_link}" rel="external">
+			<a class="button primary-button fluxer" href="{config.bot_invite_link}" rel="external">
 				<FluxerIcon></FluxerIcon> Add to Fluxer
 			</a>
-			<a class="button secondary-button discord" href="{config.bot_invite_link}">
+			<a class="button secondary-button discord" href="{config.bot_invite_link}" rel="external">
 				<DiscordIcon></DiscordIcon> Add to Discord
 			</a>
 		</div>
@@ -174,16 +174,9 @@
 	}
 
 	.secondary-button {
-		background-color: var(--background-secondary);
 		color: var(--text-primary);
-		border: 2px solid var(--border-color);
 		padding: 1rem 2rem;
 		font-size: 1.1rem;
-	}
-
-	.secondary-button:hover {
-		background-color: var(--background-tertiary);
-		border-color: var(--accent-primary);
 	}
 
 	.features {
@@ -268,7 +261,6 @@
 	.learn-more {
 		color: var(--accent-primary);
 		font-weight: 500;
-		transition: color 0.2s ease;
 		font-size: 0.9rem;
 	}
 
@@ -319,12 +311,10 @@
 	.cta .discord {
 		background-color: var(--background-secondary);
 		color: var(--text-primary);
-		border: 2px solid var(--border-color);
 	}
 
 	.cta .discord:hover {
 		background-color: var(--background-tertiary);
-		border-color: var(--accent-primary);
 	}
 
 	@media (max-width: 768px) {

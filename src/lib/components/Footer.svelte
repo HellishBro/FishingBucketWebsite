@@ -25,8 +25,8 @@
 		<div class="footer-section">
 			<h4>Links</h4>
 			<ul>
-				<li><a href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer">Support Server</a></li>
-				<li><a href="{config.bot_invite_link}" target="_blank" rel="noopener noreferrer">Invite Bot</a></li>
+				<li><a href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer external">Support Server</a></li>
+				<li><a href="{config.bot_invite_link}" target="_blank" rel="noopener noreferrer external">Invite Bot</a></li>
 			</ul>
 		</div>
 
@@ -41,7 +41,7 @@
 	</div>
 
 	<div class="footer-bottom">
-		<p>© 2026 Fishing Bucket. All rights reserved.</p>
+		<p><a href="{resolve('/copyright')}">© 2026 Fishing Bucket</a></p>
 		<p>Made with ♥ by the Fishing Bucket Team</p>
 	</div>
 </footer>
@@ -111,7 +111,6 @@
 		color: var(--text-secondary);
 		text-decoration: none;
 		font-size: 0.9rem;
-		transition: color 0.2s ease;
 	}
 
 	.footer-section a:hover {

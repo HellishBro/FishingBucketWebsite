@@ -30,10 +30,10 @@
 		<h1>Contact Us</h1>
 		<p class="page-subtitle">Inquiries? Concerns? Appeals? Need to talk to someone? Contact us here!</p>
 		<div class="header-actions">
-		    <a class="button primary-button" href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer">
+		    <a class="button primary-button fluxer" href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer">
 				<FluxerIcon></FluxerIcon> Join Support Community
 			</a>
-			<a class="button secondary-button" href="https://discord.gg/yPJAg4ytaJ" target="_blank" rel="noopener noreferrer">
+			<a class="button secondary-button discord" href="https://discord.gg/yPJAg4ytaJ" target="_blank" rel="noopener noreferrer">
 				<DiscordIcon></DiscordIcon> Join Support Server
 			</a>
 		</div>
@@ -68,7 +68,7 @@
 					</p>
 				</div>
 				<div class="member-contact">
-				    <a class="button secondary-button" href="mailto:thetempestsunite@proton.me">
+				    <a class="button secondary-button secondary-border" href="mailto:thetempestsunite@proton.me">
 						<Mail></Mail> Send Email
 					</a>
 					<button class="contact-username fluxer" onclick={() => copyToClipboard('@hellishbro#0001', 'fluxer')}>
@@ -144,13 +144,19 @@
 	.secondary-button {
 		background-color: var(--background-secondary);
 		color: var(--text-primary);
-		border: 2px solid var(--border-color);
 		padding: 0.75rem 1.5rem;
 		font-size: 1rem;
 	}
 
+	.secondary-border {
+		border: 2px solid var(--border-color);
+	}
+
 	.secondary-button:hover {
 		background-color: var(--background-tertiary);
+	}
+
+	.secondary-border:hover {
 		border-color: var(--accent-primary);
 	}
 
@@ -242,14 +248,6 @@
 	.contact-username:hover {
 		background-color: var(--background-secondary);
 		border-color: var(--accent-primary);
-	}
-
-	.contact-username.fluxer {
-		color: var(--accent-primary);
-	}
-
-	.contact-username.discord {
-		color: #5865F2;
 	}
 
 	@media (max-width: 768px) {
