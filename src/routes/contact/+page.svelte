@@ -2,7 +2,8 @@
 	import { default as config } from "$lib/config.json";
 	import FluxerIcon from "$lib/components/FluxerIcon.svelte";
 	import DiscordIcon from "$lib/components/DiscordIcon.svelte";
-	import { Mail, Users, Copy, Check } from "@lucide/svelte";
+	import { Mail, Copy, Check } from "@lucide/svelte";
+	import tempestAV from "$lib/assets/tempest.jpg";
 
 	let fluxerCopied = $state(false);
 	let discordCopied = $state(false);
@@ -29,11 +30,11 @@
 		<h1>Contact Us</h1>
 		<p class="page-subtitle">Inquiries? Concerns? Appeals? Need to talk to someone? Contact us here!</p>
 		<div class="header-actions">
-			<a class="button primary-button" href="https://discord.gg/yPJAg4ytaJ" target="_blank" rel="noopener noreferrer">
-				<DiscordIcon></DiscordIcon> Contact Us
-			</a>
-			<a class="button secondary-button" href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer">
+		    <a class="button primary-button" href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer">
 				<FluxerIcon></FluxerIcon> Join Support Community
+			</a>
+			<a class="button secondary-button" href="https://discord.gg/yPJAg4ytaJ" target="_blank" rel="noopener noreferrer">
+				<DiscordIcon></DiscordIcon> Join Support Server
 			</a>
 		</div>
 	</div>
@@ -49,7 +50,8 @@
 			<div class="team-member">
 				<div class="member-header">
 					<div class="member-avatar">
-						<Users></Users>
+						<!-- <img src="../../lib/assets/tempest.jpg" alt="Sarah Tempest" /> -->
+						<img src={tempestAV} class="avatar" alt="Sarah Tempest" />
 					</div>
 					<div class="member-info">
 						<h3>Sarah Tempest</h3>
@@ -93,6 +95,12 @@
 </div>
 
 <style>
+	.avatar {
+		width: 100%;
+		height: 100%;
+		border-radius: 15%;		
+	}
+
 	.contact-page {
 		max-width: 900px;
 		margin: 0 auto;
