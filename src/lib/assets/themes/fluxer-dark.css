@@ -1,0 +1,32 @@
+* {
+    --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+    --background-primary: #0F0F23;
+    --background-secondary: #1A1A2E;
+    --background-secondary-alt: #252542;
+    --background-tertiary: #2D2D4A;
+    --background-header-primary: #1E1E3F;
+    --background-textarea: #2A2A4A;
+    --fluxer-brand-primary: #6366F1;
+    --fluxer-brand-secondary: #4F46E5;
+    --fluxer-brand-primary-light: #EEF2FF;
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --text-on-fluxer-brand: #FFFFFF;
+    --text-on-fluxer-brand-primary: #1E293B;
+    --accent-primary: #6366F1;
+    --accent-secondary: #4F46E5;
+    --accent-tertiary: #818CF8;
+    --accent-success: #10B981;
+    --accent-success-secondary: #059669;
+    --accent-warning: #F59E0B;
+    --accent-warning-secondary: #D97706;
+    --accent-danger: #EF4444;
+    --accent-danger-secondary: #DC2626;
+    --accent-info: #3B82F6;
+    --accent-purple: #8B5CF6;
+    --markup-mention: #60A5FA;
+    --border-color: #2D2D4A;
+    --card-hover: #252542;
+}
