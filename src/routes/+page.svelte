@@ -26,7 +26,7 @@
 				<a class="button primary-button" href="{config.bot_invite_link}" rel="external">
 					<FluxerIcon></FluxerIcon> Add to Fluxer
 				</a>
-				<a class="button secondary-button discord" href="{config.bot_invite_link}" rel="external">
+				<a class="button secondary-button discord" href="{config.bot_invite_link_discord}" rel="external">
 					<DiscordIcon></DiscordIcon> Add to Discord
 				</a>
 				{#if auth && user}
