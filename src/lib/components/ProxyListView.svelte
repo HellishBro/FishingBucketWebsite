@@ -2,7 +2,7 @@
 	import { Eye, EyeClosed } from '@lucide/svelte';
 	import { get_effective_avatar_url, type Proxy, type ProxyGroup } from '$lib/models.svelte';
 	import type { ProxyGroupCollection } from '$lib/components/DashBoard.svelte';
-	import { get_id_string } from '$lib/models.svelte.ts';
+	import { get_id_string } from '$lib/models.svelte';
 
 	let {
 		target, groups

@@ -1,5 +1,6 @@
 {
 	"api_url": "https://api.fishingbucket.org/api/v1",
 	"bot_invite_link": "https://web.fluxer.app/oauth2/authorize?client_id=1471373152818077943&scope=bot&permissions=137976212560",
-	"hq_server_invite": "https://fluxer.gg/jpXCwfto"
+	"hq_server_invite": "https://fluxer.gg/jpXCwfto",
+	"hq_discord_invite": "https://discord.com/oauth2/authorize?client_id=1478252547197108417&permissions=413122554944&integration_type=0&scope=bot"
 }

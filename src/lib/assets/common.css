@@ -1,15 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
 * {
     font-size: 16px;
     color: var(--text-primary);
     font-family: var(--font), sans-serif;
-}
-
-h2 {
-    font-size: 1.25em;
+    box-sizing: border-box;
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 2.5em;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5em 0;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 1.75em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.5em 0;
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 0 0 0.5em 0;
+    line-height: 1.4;
+}
+
+p {
+    line-height: 1.6;
+    margin: 0 0 1em 0;
+}
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent-secondary);
 }
 
 pre, .monospace {
@@ -19,40 +51,70 @@ pre, .monospace {
 body {
     background-color: var(--background-primary);
     margin: 0;
+    padding: 0;
 }
 
 button, .button {
-    padding: 5px 10px;
+    padding: 0.75rem 1.5rem;
     background-color: var(--accent-primary);
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     text-decoration: none;
-    vertical-align: central;
-}
-
-.dangerous-button {
-    background-color: var(--fluxer-brand-primary-light);
-    border: var(--accent-danger) 2px solid;
-    color: var(--text-on-fluxer-brand-primary);
-}
-.dangerous-button svg {
-    stroke: var(--text-on-fluxer-brand-primary);
-}
-
-.green-button {
-    background-color: var(--background-primary);
-    border: var(--accent-success) 3px solid;
-}
-
-.yellow-button {
-    background-color: var(--background-primary);
-    border: var(--accent-warning) 3px solid;
+    vertical-align: middle;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 button:hover, .button:hover {
     background-color: var(--accent-secondary);
+}
+
+.dangerous-button {
+    background-color: var(--background-primary);
+    border: 2px solid var(--accent-danger);
+    color: var(--accent-danger);
+}
+
+.dangerous-button svg {
+    stroke: var(--accent-danger);
+}
+
+.dangerous-button:hover {
+    background-color: var(--accent-danger);
+    color: white;
+}
+
+.dangerous-button:hover svg {
+    stroke: white;
+}
+
+.green-button {
+    background-color: var(--background-primary);
+    border: 3px solid var(--accent-success);
+    color: var(--accent-success);
+}
+
+.green-button:hover {
+    background-color: var(--accent-success);
+    color: white;
+    border-color: var(--accent-success);
+}
+
+.yellow-button {
+    background-color: var(--background-primary);
+    border: 3px solid var(--accent-warning);
+    color: var(--accent-warning);
+}
+
+.yellow-button:hover {
+    background-color: var(--accent-warning);
+    color: white;
+    border-color: var(--accent-warning);
 }
 
 .discord {
@@ -60,21 +122,7 @@ button:hover, .button:hover {
 }
 
 .discord:hover {
-    background-color: color-mix(in srgb, #5865F2 75%, #000000 25%);
-}
-
-.dangerous-button:hover {
-    background-color: var(--accent-danger);
-}
-
-.green-button:hover {
-    background-color: var(--accent-success-secondary);
-    border: var(--fluxer-brand-primary-light) 3px solid;
-}
-
-.yellow-button:hover {
-    background-color: var(--accent-warning-secondary);
-    border: var(--fluxer-brand-primary-light) 3px solid;
+    background-color: #4752C4;
 }
 
 .avatar {
@@ -85,33 +133,48 @@ button:hover, .button:hover {
 .wrap-scrollable-container {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow-y: auto;
 }
 
 ul {
-    list-style-type: circle;
+    list-style-type: disc;
     list-style-position: inside;
+    padding-left: 1rem;
+}
+
+li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
 }
 
 input, textarea, select, option {
     background-color: var(--background-textarea);
-    padding: 5px 10px;
-    border: var(--accent-primary) 2px solid;
-    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
 }
 
 textarea {
     resize: vertical;
+    min-height: 100px;
 }
 
 .iconed-button {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    gap: 5px;
+    gap: 0.5rem;
 }
 
 .med-font {
-    font-size: 1.25em;
+    font-size: 1.125rem;
 }

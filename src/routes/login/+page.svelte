@@ -12,37 +12,96 @@
 	<title>Login | Fishing Bucket</title>
 </svelte:head>
 
-<div class="wrap-scrollable-container">
-	<div style="text-align: center; width: 100%;">
+<div class="login-page">
+	<div class="login-container">
 		<h1>Login</h1>
-        <h2>Login with:</h2>
-        <div style="display: inline-flex; align-items: center; gap: 5px;">
-            <a href="{fluxer_redirect_uri}" rel="external" class="login-option fluxer"><FluxerIcon></FluxerIcon> Fluxer</a>
-            OR
-            <a href="{discord_redirect_uri}" rel="external" class="login-option discord"><DiscordIcon></DiscordIcon> Discord</a>
-        </div>
+		<h2>Login with:</h2>
+		<div class="login-buttons">
+			<a href="{fluxer_redirect_uri}" rel="external" class="login-button fluxer">
+				<FluxerIcon></FluxerIcon> Fluxer
+			</a>
+			<a href="{discord_redirect_uri}" rel="external" class="login-button discord">
+				<DiscordIcon></DiscordIcon> Discord
+			</a>
+		</div>
 	</div>
 </div>
 
 <style>
-    .login-option {
-        padding: 0.75em;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-        text-decoration: none;
-        vertical-align: central;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-    }
+	.login-page {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100%;
+		padding: 2rem;
+	}
 
-    .fluxer {
-        background-color: var(--accent-primary);
-    }
+	.login-container {
+		text-align: center;
+		max-width: 500px;
+		width: 100%;
+	}
 
-    .fluxer:hover {
-        background-color: var(--accent-secondary);
-    }
+	.login-container h1 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
+
+	.login-container h2 {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		margin-bottom: 2rem;
+	}
+
+	.login-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.login-button {
+		padding: 1rem 2rem;
+		border: none;
+		border-radius: 12px;
+		cursor: pointer;
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		font-size: 1.1rem;
+		font-weight: 600;
+		width: 100%;
+		max-width: 300px;
+	}
+
+	.fluxer {
+		background-color: var(--accent-primary);
+		color: white;
+	}
+
+	.fluxer:hover {
+		background-color: var(--accent-secondary);
+	}
+
+	.discord {
+		background-color: #5865F2;
+		color: white;
+	}
+
+	.discord:hover {
+		background-color: #4752C4;
+	}
+
+	@media (max-width: 768px) {
+		.login-container h1 {
+			font-size: 2rem;
+		}
+
+		.login-button {
+			max-width: 100%;
+		}
+	}
 </style>
