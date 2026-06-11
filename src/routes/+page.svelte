@@ -17,18 +17,16 @@
 	<meta name="description" content="Fishing Bucket is the Fluxer bot for proxying messages. Perfect for plural systems, roleplaying, and TTRPGs." />
 </svelte:head>
 
-<!-- eslint-disable svelte/no-navigation-without-resolve -->
-
 <div class="homepage">
 	<section class="hero">
 		<div class="hero-content">
 			<img src={favicon} alt="Fishing Bucket" class="hero-avatar" />
 			<h1 class="hero-title">Fishing Bucket</h1>
 			<div class="hero-buttons">
-				<a class="button primary-button" href="{config.bot_invite_link}">
+				<a class="button primary-button" href="{config.bot_invite_link}" rel="external">
 					<FluxerIcon></FluxerIcon> Add to Fluxer
 				</a>
-				<a class="button secondary-button discord" href="{config.bot_invite_link}">
+				<a class="button secondary-button discord" href="{config.bot_invite_link}" rel="external">
 					<DiscordIcon></DiscordIcon> Add to Discord
 				</a>
 				{#if auth && user}
