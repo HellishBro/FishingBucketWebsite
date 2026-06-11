@@ -107,9 +107,9 @@
 
 	<section class="cta">
 		<h2>Ready to Get Started?</h2>
-		<p>Join thousands of users already using Fishing Bucket</p>
+		<p>Be among the thousands of proxies already created</p>
 		<div class="cta-buttons">
-			<a class="button primary-button" href="{config.bot_invite_link}">
+			<a class="button primary-button" href="{config.bot_invite_link}" rel="external">
 				<FluxerIcon></FluxerIcon> Add to Fluxer
 			</a>
 			<a class="button secondary-button discord" href="{config.bot_invite_link}">
