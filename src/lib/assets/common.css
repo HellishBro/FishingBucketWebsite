@@ -99,7 +99,7 @@ button:hover, .button:hover {
 
 .green-button {
     background-color: var(--background-primary);
-    border: 3px solid var(--accent-success);
+    border: 2px solid var(--accent-success);
     color: var(--accent-success);
 }
 
@@ -111,7 +111,7 @@ button:hover, .button:hover {
 
 .yellow-button {
     background-color: var(--background-primary);
-    border: 3px solid var(--accent-warning);
+    border: 2px solid var(--accent-warning);
     color: var(--accent-warning);
 }
 
@@ -197,4 +197,9 @@ textarea {
 
 .med-font {
     font-size: 1.125rem;
+}
+
+.small-button {
+    padding: 5px;
+    height: min-content;
 }
