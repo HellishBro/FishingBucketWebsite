@@ -50,7 +50,6 @@
 			<div class="team-member">
 				<div class="member-header">
 					<div class="member-avatar">
-						<!-- <img src="../../lib/assets/tempest.jpg" alt="Sarah Tempest" /> -->
 						<img src={tempestAV} class="avatar" alt="Sarah Tempest" />
 					</div>
 					<div class="member-info">
