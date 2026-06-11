@@ -2,6 +2,7 @@
 	import "$lib/assets/themes/fluxer-dark.css"
 	import '$lib/assets/common.css';
 	import TopBar from '$lib/components/TopBar.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	import { type User, get_user } from '$lib/user';
 	import { onMount, setContext } from 'svelte';
 	import { get_auth } from '$lib/api';
@@ -23,28 +24,36 @@
 <div class="app">
 	<TopBar></TopBar>
 
-	<div class="contents">
+	<main class="contents">
 		{@render children()}
-	</div>
+	</main>
+
+	<Footer></Footer>
 </div>
 
 <style>
 	.app {
-      display: flex;
-      flex-direction: column;
-			min-height: 0;
-			height: 100vh;
-			overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		background-color: var(--background-primary);
 	}
 
 	.contents {
-      margin: calc(2.5em + 55px) 20px 20px;
-      flex-grow: 1;
-      min-height: 0;
-			position: relative;
-			box-sizing: border-box;
-			background-color: var(--background-secondary);
-			padding: 10px;
-			border-radius: 10px;
+		flex: 1;
+		margin-top: 80px;
+		padding: 2rem;
+		max-width: 1400px;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		box-sizing: border-box;
+	}
+
+	@media (max-width: 768px) {
+		.contents {
+			padding: 1rem;
+			margin-top: 70px;
+		}
 	}
 </style>

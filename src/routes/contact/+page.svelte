@@ -1,105 +1,272 @@
-<script>
+<script lang="ts">
 	import { default as config } from "$lib/config.json";
 	import FluxerIcon from "$lib/components/FluxerIcon.svelte";
-	import { Mail } from "@lucide/svelte";
+	import DiscordIcon from "$lib/components/DiscordIcon.svelte";
+	import { Mail, Copy, Check } from "@lucide/svelte";
+	import tempestAV from "$lib/assets/tempest.jpg";
+
+	let fluxerCopied = $state(false);
+	let discordCopied = $state(false);
+
+	async function copyToClipboard(text: string, type: 'fluxer' | 'discord') {
+		await navigator.clipboard.writeText(text);
+		if (type === 'fluxer') {
+			fluxerCopied = true;
+			setTimeout(() => fluxerCopied = false, 2000);
+		} else {
+			discordCopied = true;
+			setTimeout(() => discordCopied = false, 2000);
+		}
+	}
 </script>
 
 <svelte:head>
 	<title>Contact Us | Fishing Bucket</title>
+	<meta name="description" content="Contact the Fishing Bucket team for support, inquiries, or appeals" />
 </svelte:head>
 
-<!-- eslint-disable svelte/no-navigation-without-resolve -->
-
-<div class="wrap-scrollable-container">
-	<div style="text-align: center; width: 100%;">
+<div class="contact-page">
+	<div class="page-header">
 		<h1>Contact Us</h1>
-		<p>
-			Inquiries? Concerns? Appeals? Need to talk to someone? Contact us here!
-		</p>
-		<div style="height: auto; gap: 5px;">
-			<a class="button" href="{config.hq_server_invite}" style="font-size: 1.25em; display: inline-flex; gap: 5px;">
+		<p class="page-subtitle">Inquiries? Concerns? Appeals? Need to talk to someone? Contact us here!</p>
+		<div class="header-actions">
+		    <a class="button primary-button fluxer" href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer">
 				<FluxerIcon></FluxerIcon> Join Support Community
+			</a>
+			<a class="button secondary-button discord" href="https://discord.gg/yPJAg4ytaJ" target="_blank" rel="noopener noreferrer">
+				<DiscordIcon></DiscordIcon> Join Support Server
 			</a>
 		</div>
 	</div>
 
-	<div class="cards" style="margin-top: 25px;">
-		<div class="card">
-			<h1>Fishing Bucket Administration Team</h1>
+	<div class="contact-content">
+		<section class="team-section">
+			<h2>Fishing Bucket Administration Team</h2>
 			<p>
 				The administration team oversees everything that goes on with Fishing Bucket.
 				They handle moderation, appeals, and community, ensuring the well-being of the infrastructure.
 			</p>
-			<div class="cards-nested" style="margin-top: 10px;">
-				<div class="card">
-					<h2>Sarah Tempest</h2>
+			
+			<div class="team-member">
+				<div class="member-header">
+					<div class="member-avatar">
+						<img src={tempestAV} class="avatar" alt="Sarah Tempest" />
+					</div>
+					<div class="member-info">
+						<h3>Sarah Tempest</h3>
+						<p class="member-role">Lead Developer & Administrator</p>
+					</div>
+				</div>
+				<div class="member-bio">
 					<p>
 						Hello! It is I, Sarah, currently the only admin of Fishing Bucket!
 						I am currently the sole developer and maintainer of Fishing Bucket, but I hope that will change soon!
 						You can contact me at my email, or shoot me a message on Fluxer!
-						<br>
-						Make sure to read through <a href="https://nohello.net/">No Hello</a> when contacting me about issues with these services.
 					</p>
-					<div style="height: auto; gap: 5px;">
-						<a class="button" href="mailto:thetempestsunite@proton.me" style="display: inline-flex; gap: 5px;">
-							<Mail></Mail> E-mail
-						</a>
-						<div class="button fluxer-contact">
-							<FluxerIcon></FluxerIcon> @hellishbro#0001
-						</div>
-					</div>
+					<p>
+						<strong>Tip:</strong> Make sure to read through <a href="https://nohello.net/" target="_blank" rel="noopener noreferrer">No Hello</a> when contacting me about issues with these services.
+					</p>
+				</div>
+				<div class="member-contact">
+				    <a class="button secondary-button secondary-border" href="mailto:thetempestsunite@proton.me">
+						<Mail></Mail> Send Email
+					</a>
+					<button class="contact-username fluxer" onclick={() => copyToClipboard('@hellishbro#0001', 'fluxer')}>
+						<FluxerIcon></FluxerIcon> @hellishbro#0001
+						{#if fluxerCopied}
+							<Check></Check>
+						{:else}
+							<Copy></Copy>
+						{/if}
+					</button>
+					<button class="contact-username discord" onclick={() => copyToClipboard('hellishbro.', 'discord')}>
+						<DiscordIcon></DiscordIcon> hellishbro.
+						{#if discordCopied}
+							<Check></Check>
+						{:else}
+							<Copy></Copy>
+						{/if}
+					</button>
 				</div>
 			</div>
-		</div>
+		</section>
 	</div>
 </div>
 
 <style>
-    p {
-        text-indent: 1em each-line;
-    }
+	.avatar {
+		width: 100%;
+		height: 100%;
+		border-radius: 15%;		
+	}
 
-    .cards {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
+	.contact-page {
+		max-width: 900px;
+		margin: 0 auto;
+	}
 
-    .card {
-        box-sizing: border-box;
-        background-color: var(--background-primary);
-        border-radius: 10px;
-        padding: 10px 20px;
-    }
+	.page-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding: 3rem 2rem;
+		background: linear-gradient(135deg, var(--background-secondary) 0%, var(--background-primary) 100%);
+		border-radius: 12px;
+		border: 1px solid var(--border-color);
+	}
 
-		.cards-nested .card {
-				background-color: var(--background-secondary);
+	.page-header h1 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin-bottom: 0.75rem;
+	}
+
+	.page-subtitle {
+		color: var(--text-secondary);
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+		line-height: 1.6;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.primary-button {
+		background-color: var(--accent-primary);
+		color: white;
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+	}
+
+	.secondary-button {
+		background-color: var(--background-secondary);
+		color: var(--text-primary);
+		padding: 0.75rem 1.5rem;
+		font-size: 1rem;
+	}
+
+	.secondary-border {
+		border: 2px solid var(--border-color);
+	}
+
+	.secondary-button:hover {
+		background-color: var(--background-tertiary);
+	}
+
+	.secondary-border:hover {
+		border-color: var(--accent-primary);
+	}
+
+	.contact-content {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.team-section h2 {
+		font-size: 2rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+
+	.team-section > p {
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin-bottom: 2rem;
+	}
+
+	.team-member {
+		background-color: var(--background-secondary);
+		padding: 2rem;
+		border-radius: 12px;
+		border: 1px solid var(--border-color);
+	}
+
+	.member-header {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.member-avatar {
+		width: 64px;
+		height: 64px;
+		background-color: var(--accent-primary);
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		flex-shrink: 0;
+	}
+
+	.member-info h3 {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-bottom: 0.25rem;
+	}
+
+	.member-role {
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+		margin: 0;
+	}
+
+	.member-bio {
+		margin-bottom: 1.5rem;
+	}
+
+	.member-bio p {
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin-bottom: 1rem;
+	}
+
+	.member-contact {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.contact-username {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.25rem;
+		background-color: var(--background-tertiary);
+		border-radius: 8px;
+		font-weight: 500;
+		cursor: pointer;
+		border: 1px solid var(--border-color);
+	}
+
+	.contact-username:hover {
+		background-color: var(--background-secondary);
+		border-color: var(--accent-primary);
+	}
+
+	@media (max-width: 768px) {
+		.page-header {
+			padding: 2rem 1.5rem;
 		}
 
-    @media (min-aspect-ratio: 3/4) {
-        .cards-nested {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-    }
-
-    @media (max-aspect-ratio: 3/4) {
-        .cards-nested {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-    }
-
-		.fluxer-contact {
-        display: inline-flex;
-				gap: 5px;
-				cursor: revert;
+		.page-header h1 {
+			font-size: 2rem;
 		}
 
-		.fluxer-contact:hover {
-				background-color: var(--accent-primary);
+		.page-subtitle {
+			font-size: 1rem;
 		}
+
+		.member-header {
+			flex-direction: column;
+			text-align: center;
+		}
+	}
 </style>
 

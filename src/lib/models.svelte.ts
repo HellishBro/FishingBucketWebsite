@@ -17,9 +17,9 @@ export function id_equals(a: ID | null, b: ID | null): boolean {
 
 export function get_id_string(id: ID): string {
 	if (typeof id == "number") {
-		return id.toString(16);
+		return "0x" + id.toString(16);
 	}
-	return "new #" + id.index.toString(16);
+	return "new 0x" + id.index.toString(16);
 }
 
 export interface Proxy {

@@ -6,12 +6,14 @@
 		confirm_text,
 		button_text,
 		delete_function,
-		prefix
+		prefix,
+		class: class_ = []
 	}: {
 		confirm_text: string,
 		button_text: string,
 		delete_function: () => void,
-		prefix: Snippet
+		prefix: Snippet,
+		class?: string[]
 	} = $props();
 
 	let delete_confirmation = $state(false);
@@ -35,7 +37,7 @@
 </script>
 
 <button
-	class="dangerous-button"
+	class={[...class_, "dangerous-button"]}
 	style="flex-grow: 1; display: flex; align-items: center; justify-content: center;"
 	onclick={e => {
 		e.stopPropagation();
@@ -47,6 +49,7 @@
 		}
 		shake(delete_button);
 		delete_confirmation = true;
+		// @ts-expect-error uses browser setTimeout instead of node setTimeout
 		timeout_id = setTimeout(() => {
 			if (delete_confirmation) {
 				delete_confirmation = false;

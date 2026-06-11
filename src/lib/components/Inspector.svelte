@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ExternalLink, Plus, Trash } from '@lucide/svelte';
+	import { ExternalLink, Plus, Trash, X } from '@lucide/svelte';
 	import {
 		DeleteProxyEdit,
 		EditProxyFieldEdit, EditProxyGroupFieldEdit,
@@ -95,15 +95,16 @@
 	<div class="inspector-row">
 		<label for="proxy-avatar">Proxy Avatar URL:</label>
 		<img src={current_target_proxy.avatar_url} style="width: 40px; height: 40px;" alt="Proxy Avatar" class="avatar">
-		<input bind:value={
-			() => current_target_proxy.avatar_url,
-			(v) => {
-				add_edit(new EditProxyFieldEdit(current_target_proxy.id, "avatar_url", v));
-				current_target_proxy.avatar_url = v;
-			}
-		} placeholder="Proxy avatar URL goes here..." type="url">
-		<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-		<a href={current_target_proxy.avatar_url} target="_blank" class="button"><ExternalLink></ExternalLink></a>
+		<div style="flex-grow: 1; position: relative;">
+			<input bind:value={
+				() => current_target_proxy.avatar_url,
+				(v) => {
+					add_edit(new EditProxyFieldEdit(current_target_proxy.id, "avatar_url", v));
+					current_target_proxy.avatar_url = v;
+				}
+			} placeholder="Proxy avatar URL goes here..." type="url" class="xable-input">
+			<a class="x-button extern-button" href={current_target_proxy.avatar_url} target="_blank" rel="external"><ExternalLink></ExternalLink></a>
+		</div>
 	</div>
 	<div class="inspector-row">
 		<label for="proxy-group">Proxy Group:</label>
@@ -121,7 +122,7 @@
 	</div>
 	<div class="inspector-row" style="flex-direction: column; text-align: left; align-items: flex-start;">
 		<label for="proxy-triggers">Proxy Triggers:</label>
-		<div style="flex-grow: 1; display: flex; flex-direction: row; flex-wrap: wrap; gap: 5px;">
+		<div style="flex-grow: 1; display: grid; grid-template-columns: auto auto auto; gap: 5px;">
 			<!-- eslint-disable-next-line svelte/require-each-key @typescript-eslint/no-unused-vars -->
 			{#each current_target_proxy.triggers as _, index}
 				<div style="position: relative;">
@@ -131,15 +132,15 @@
 							current_target_proxy.triggers[index] = v;
 							update_proxy_triggers();
 						}
-					} placeholder="new{index}: {'{}'}" style="position: relative;">
+					} placeholder="new{index}: {'{}'}" class="xable-input">
 					<button class="x-button" onclick={() => {
 						current_target_proxy.triggers.splice(index, 1);
 						update_proxy_triggers();
-					}}>x</button>
+					}}><X></X></button>
 				</div>
 			{/each}
 		</div>
-		<button style="flex-shrink: 0;" onclick={() => {
+		<button style="flex-shrink: 0;" class="small-button" onclick={() => {
 			current_target_proxy.triggers.push(`new${current_target_proxy.triggers.length ? current_target_proxy.triggers.length + 1 : ''}: {}`);
 			update_proxy_triggers();
 		}}><Plus></Plus></button>
@@ -151,7 +152,6 @@
 			{#each Object.entries(current_target_proxy.forms) as [ form_name, form_url ]}
 				<div style="position: relative; display: flex; gap: 10px; align-items: center; width: 100%;">
 					<input type="radio" style="flex-grow: 0;" name="proxy-form-radio-group" bind:group={current_form_facade.current_form} value={form_name}>
-
 					<div style="position: relative; display: flex;">
 						<input bind:value={
 							() => form_name,
@@ -160,45 +160,46 @@
 								current_target_proxy.forms[v] = form_url;
 								update_proxy_forms();
 							}
-						} style="position: relative; flex-grow: 0;" placeholder="Proxy form name goes here...">
+						} class="xable-input" placeholder="Proxy form name goes here...">
 						<button class="x-button" onclick={() => {
 								delete current_target_proxy.forms[form_name];
 								update_proxy_forms();
-							}}>x</button>
+							}}><X></X></button>
 					</div>
-					<p>=</p>
+					<span style="color: var(--text-primary)">=</span>
 					<img src={form_url} style="width: 40px; height: 40px;" alt="Proxy Form Avatar" class="avatar">
-					<input bind:value={
-						() => current_target_proxy.forms[form_name],
-						(v) => {
-							current_target_proxy.forms[form_name] = v;
-							update_proxy_forms();
-						}
-					} placeholder="Proxy form avatar URL goes here..." type="url" style="flex-grow: 1;">
-					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-					<a href={form_url} target="_blank" class="button"><ExternalLink></ExternalLink></a>
+					<div style="position: relative; flex-grow: 1">
+						<input bind:value={
+							() => current_target_proxy.forms[form_name],
+							(v) => {
+								current_target_proxy.forms[form_name] = v;
+								update_proxy_forms();
+							}
+						} placeholder="Proxy form avatar URL goes here..." type="url" class="xable-input">
+						<a href={form_url} target="_blank" class="x-button extern-button" rel="external"><ExternalLink></ExternalLink></a>
+					</div>
 				</div>
 			{/each}
 		</div>
 		<div style="display: flex; flex-direction: row; gap: 10px;">
-			<button style="flex-shrink: 0;" onclick={() => {
+			<button style="height: auto;" class="small-button" onclick={() => {
 				current_target_proxy.forms[`new${Object.keys(current_target_proxy.forms).length + 1}`] = get_random_avatar();
 				update_proxy_forms();
 			}}><Plus></Plus></button>
-			<button style="flex-shrink: 0;" onclick={() => {
+			<button style="height: auto;" class="small-button" onclick={() => {
 				current_target_proxy.current_form = null;
 				current_form_facade.current_form = null;
 			}}>Reset current form</button>
 		</div>
 	</div>
 	<div class="inspector-row" style="gap: 20px;">
-		<h2>Metadata:</h2>
+		<p>Metadata:</p>
 		<div style="display: flex; flex-direction: column;">
-			<h2 style="margin: 2px 0;">Date Created</h2>
+			<p style="margin: 2px 0;">Date Created</p>
 			<p style="margin: 2px 0;">{new Intl.DateTimeFormat().format(new Date(current_target_proxy.creation_date * 1000))}</p>
 		</div>
 		<div style="display: flex; flex-direction: column;">
-			<h2 style="margin: 2px 0;">Messages Sent</h2>
+			<p style="margin: 2px 0;">Messages Sent</p>
 			<p style="margin: 2px 0;">{current_target_proxy.times_used}</p>
 		</div>
 	</div>
@@ -272,9 +273,9 @@
 		</select>
 	</div>
 	<div class="inspector-row" style="gap: 20px;">
-		<h2>Metadata:</h2>
+		<p>Metadata:</p>
 		<div style="display: flex; flex-direction: column;">
-			<h2 style="margin: 2px 0;">Date Created</h2>
+			<p style="margin: 2px 0;">Date Created</p>
 			<p style="margin: 2px 0;">{new Intl.DateTimeFormat().format(new Date(current_target_group.creation_date * 1000))}</p>
 		</div>
 	</div>
@@ -325,7 +326,27 @@
     .x-button {
         background-color: transparent;
         position: absolute;
-        right: 5px;
+        right: 0.5rem;
+		top: 25%;
         color: var(--accent-danger);
+		padding: 0;
+		margin: 0;
     }
+
+	.extern-button {
+		color: var(--text-primary);
+	}
+
+	:global {
+		.extern-button svg, .x-button svg {
+			width: 1rem;
+		}
+	}
+
+	.xable-input {
+		position: relative;
+		padding-right: 1.75rem;
+		box-sizing: border-box;
+		width: 100%;
+	}
 </style>
