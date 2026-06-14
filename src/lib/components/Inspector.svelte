@@ -68,32 +68,42 @@
 		<button onclick={() => {
 			navigator.clipboard.writeText(get_id_string(current_target_proxy.id));
 		}}>
-			Copy Proxy ID:
+			Copy ID:
 			<span class="monospace">{get_id_string(current_target_proxy.id)}</span>
 		</button>
 	</div>
 	<div class="inspector-row">
-		<label for="proxy-name">Proxy Name:</label>
+		<label for="proxy-name">Name:</label>
 		<input bind:value={
 			() => current_target_proxy.name,
 			(v) => {
 				add_edit(new EditProxyFieldEdit(current_target_proxy.id, "name", v));
 				current_target_proxy.name = v;
 			}
-		} name="proxy-name" placeholder="Proxy name goes here...">
+		} name="proxy-name" placeholder="Name goes here...">
 	</div>
 	<div class="inspector-row">
-		<label for="proxy-nickname">Proxy Nickname:</label>
+		<label for="proxy-nickname">Nickname:</label>
 		<input bind:value={
 			() => current_target_proxy.nickname,
 			(v) => {
 				add_edit(new EditProxyFieldEdit(current_target_proxy.id, "nickname", v));
 				current_target_proxy.nickname = v;
 			}
-		} name="proxy-nickname" placeholder="Proxy nickname goes here...">
+		} name="proxy-nickname" placeholder="Nickname goes here...">
 	</div>
 	<div class="inspector-row">
-		<label for="proxy-avatar">Proxy Avatar URL:</label>
+		<label for="proxy-pronouns">Pronouns:</label>
+		<input bind:value={
+			() => current_target_proxy.pronouns,
+			(v) => {
+				add_edit(new EditProxyFieldEdit(current_target_proxy.id, "pronouns", v));
+				current_target_proxy.pronouns = v;
+			}
+		} name="proxy-pronouns" placeholder="Pronouns goes here...">
+	</div>
+	<div class="inspector-row">
+		<label for="proxy-avatar">Avatar URL:</label>
 		<img src={current_target_proxy.avatar_url} style="width: 40px; height: 40px;" alt="Proxy Avatar" class="avatar">
 		<div style="flex-grow: 1; position: relative;">
 			<input bind:value={
@@ -102,12 +112,12 @@
 					add_edit(new EditProxyFieldEdit(current_target_proxy.id, "avatar_url", v));
 					current_target_proxy.avatar_url = v;
 				}
-			} placeholder="Proxy avatar URL goes here..." type="url" class="xable-input">
+			} placeholder="Avatar URL goes here..." type="url" class="xable-input">
 			<a class="x-button extern-button" href={current_target_proxy.avatar_url} target="_blank" rel="external"><ExternalLink></ExternalLink></a>
 		</div>
 	</div>
 	<div class="inspector-row">
-		<label for="proxy-group">Proxy Group:</label>
+		<label for="proxy-group">Group:</label>
 		<select name="proxy-group" bind:value={
 			() => current_target_proxy.group,
 			(v) => {
@@ -121,7 +131,7 @@
 		</select>
 	</div>
 	<div class="inspector-row" style="flex-direction: column; text-align: left; align-items: flex-start;">
-		<label for="proxy-triggers">Proxy Triggers:</label>
+		<label for="proxy-triggers">Triggers:</label>
 		<div style="flex-grow: 1; display: grid; grid-template-columns: auto auto auto; gap: 5px;">
 			<!-- eslint-disable-next-line svelte/require-each-key @typescript-eslint/no-unused-vars -->
 			{#each current_target_proxy.triggers as _, index}
@@ -146,7 +156,7 @@
 		}}><Plus></Plus></button>
 	</div>
 	<div class="inspector-row" style="flex-direction: column; text-align: left; align-items: flex-start;">
-		<label for="proxy-forms">Proxy Forms:</label>
+		<label for="proxy-forms">Forms:</label>
 		<div style="flex-grow: 1; display: flex; flex-direction: column; flex-wrap: wrap; width: 100%;">
 			<!-- eslint-disable-next-line svelte/require-each-key -->
 			{#each Object.entries(current_target_proxy.forms) as [ form_name, form_url ]}
@@ -204,14 +214,14 @@
 		</div>
 	</div>
 	<div class="inspector-row">
-		<label for="proxy-description">Proxy Description:</label>
+		<label for="proxy-description">Description:</label>
 		<textarea bind:value={
 			() => current_target_proxy.description,
 			(v) => {
 				current_target_proxy.description = v;
 				add_edit(new EditProxyFieldEdit(current_target_proxy.id, "description", v));
 			}
-		} name="proxy-description" placeholder="Proxy description goes here..."></textarea>
+		} name="proxy-description" placeholder="Description goes here..."></textarea>
 	</div>
 	<div class="inspector-row">
 		<DeleteButton
@@ -232,32 +242,32 @@
 		<button onclick={() => {
 	  	navigator.clipboard.writeText(get_id_string(current_target_group.id));
 	  }}>
-			Copy Group ID:
+			Copy ID:
 			<span class="monospace">{get_id_string(current_target_group.id)}</span>
 		</button>
 	</div>
 	<div class="inspector-row">
-		<label for="group-name">Group Name:</label>
+		<label for="group-name">Name:</label>
 		<input bind:value={
 			() => current_target_group.name,
 			(v) => {
 				add_edit(new EditProxyGroupFieldEdit(current_target_group.id, "name", v));
 				current_target_group.name = v;
 			}
-		} name="group-name" placeholder="Group name goes here...">
+		} name="group-name" placeholder="Name goes here...">
 	</div>
 	<div class="inspector-row">
-		<label for="group-tag">Group Tag:</label>
+		<label for="group-tag">Tag:</label>
 		<input bind:value={
 			() => current_target_group.tag,
 			(v) => {
 				add_edit(new EditProxyGroupFieldEdit(current_target_group.id, "tag", v));
 				current_target_group.tag = v;
 			}
-		} name="group-tag" placeholder="Group tag goes here...">
+		} name="group-tag" placeholder="Tag goes here...">
 	</div>
 	<div class="inspector-row">
-		<label for="group-parent">Group Parent:</label>
+		<label for="group-parent">Parent:</label>
 		<select name="group-parent" bind:value={
 				() => current_target_group.parent,
 				(v) => {
@@ -280,14 +290,14 @@
 		</div>
 	</div>
 	<div class="inspector-row">
-		<label for="group-description">Group Description:</label>
+		<label for="group-description">Description:</label>
 		<textarea bind:value={
 			() => current_target_group.description,
 			(v) => {
 				add_edit(new EditProxyGroupFieldEdit(current_target_group.id, "description", v));
 				current_target_group.description = v;
 			}
-		} name="group-description" placeholder="Group description goes here..."></textarea>
+		} name="group-description" placeholder="Description goes here..."></textarea>
 	</div>
 	<div class="inspector-row">
 		<DeleteButton

@@ -36,6 +36,7 @@ export interface Proxy {
 	effective_name: string;
 	forms: Record<string, string>;
 	current_form: string | null;
+	pronouns: string | null;
 }
 
 export interface ProxyGroup {
@@ -131,6 +132,7 @@ type ProxyFields = {
 	nickname: string | null,
 	forms: Record<string, string>,
 	current_form: string | null,
+	pronouns: string | null
 }
 
 type ProxyGroupFields = {
