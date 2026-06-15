@@ -15,6 +15,11 @@
 		if (["fluxer", "discord"].includes(params.platform)) {
 			text = "Logging in...";
 			const code = page.url.searchParams.get("code");
+			if (code == null) {
+				text = "Login canceled";
+				window.location.assign(resolve("/"));
+				return;
+			}
 			let redirect_url = page.url;
 			redirect_url.searchParams.delete("code");
 			const { error, body: res } = await post<{ session_id: string, user: object, platform: string }>(`/auth/${params.platform}/login`, { code: code, redirect_uri: redirect_url.toString() });

@@ -240,7 +240,8 @@
 			nickname: null,
 			effective_name: 'New Proxy',
 			forms: {},
-			current_form: null
+			current_form: null,
+			pronouns: null
 		} as Proxy;
 
 		const idx = groups.findIndex((g) => id_equals(g.group?.id ?? null, null));
