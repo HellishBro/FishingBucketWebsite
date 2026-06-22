@@ -7,9 +7,21 @@ export interface ApiError {
 
 export function get_auth(): string | null {
 	if (window) {
-		return window.localStorage.getItem("session_id");
+		if (time_until_expiration() > 0)
+			return window.localStorage.getItem("session_id");
 	}
 	return null;
+}
+
+export function get_expires(): number {
+	if (window) {
+		return parseFloat(window.localStorage.getItem("expires")!);
+	}
+	return 0;
+}
+
+export function time_until_expiration(): number {
+	return get_expires() - Date.now() / 1000;
 }
 
 export async function api_request<T>(url: string, init: RequestInit, auth?: string): Promise<{error?: ApiError, body?: T}> {
@@ -61,4 +73,19 @@ export async function get<T>(url: string, auth?: string): Promise<{error?: ApiEr
 	return await api_request<T>(url, {
 		method: "GET"
 	}, auth);
+}
+
+export async function attempt_refresh_token() {
+	if (window) {
+		const auth = get_auth();
+		if (auth) {
+			const { body } = await api_request<{ expires: number }>('/auth/extend', {
+				method: "POST"
+			}, auth);
+			if (body) {
+				const { expires } = body;
+				window.localStorage.setItem('expires', expires.toString());
+			}
+		}
+	}
 }

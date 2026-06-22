@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { default as config } from "$lib/config.json";
-	import { type FluxerUser } from '$lib/fluxer';
-	import { page } from '$app/state';
+	import { type User } from '$lib/user';
 	import DashBoard from '$lib/components/DashBoard.svelte';
 	import { getContext } from 'svelte';
 
 	let auth: string | null = $derived(getContext<() => string | null>("get_auth")());
-	let user: FluxerUser | null = $derived(getContext<() => FluxerUser | null>("get_user")());
+	let user: User | null = $derived(getContext<() => User | null>("get_user")());
 </script>
 
 <svelte:head>

@@ -1,3 +1,5 @@
+import { time_until_expiration } from "./api";
+
 export type User = {platform: 'fluxer', user: FluxerUser} | {platform: 'discord', user: DiscordUser};
 
 export interface FluxerUser {
@@ -17,10 +19,15 @@ export interface DiscordUser {
 
 export function get_user(): User | null {
 	if (window) {
-		const user_unparsed = window.localStorage.getItem("user");
-		const platform = window.localStorage.getItem("platform");
-		if (user_unparsed == null || platform == null || (!["discord", "fluxer"].includes(platform))) return null;
-		return {platform: platform as "fluxer" | "discord", user: JSON.parse(user_unparsed)};
+		if (time_until_expiration() > 0) {
+			const user_unparsed = window.localStorage.getItem("user");
+			const platform = window.localStorage.getItem("platform");
+			if (user_unparsed == null || platform == null || (!["discord", "fluxer"].includes(platform))) return null;
+			return {
+				platform: platform as "fluxer" | "discord",
+				user: JSON.parse(user_unparsed)
+			};
+		}
 	}
 	return null;
 }

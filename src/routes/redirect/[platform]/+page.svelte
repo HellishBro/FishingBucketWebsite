@@ -22,17 +22,18 @@
 			}
 			let redirect_url = page.url;
 			redirect_url.searchParams.delete("code");
-			const { error, body: res } = await post<{ session_id: string, user: object, platform: string }>(`/auth/${params.platform}/login`, { code: code, redirect_uri: redirect_url.toString() });
+			const { error, body: res } = await post<{ session_id: string, user: object, platform: string, expires: number }>(`/auth/${params.platform}/login`, { code: code, redirect_uri: redirect_url.toString() });
 			if (error) {
 				text = `${error.error_code}: ${error.message}`;
 				return;
 			}
 			else if (res) {
 				text = "Saving data...";
-				const { session_id, user, platform } = res;
+				const { session_id, user, platform, expires } = res;
 				localStorage.setItem('session_id', session_id);
 				localStorage.setItem('user', JSON.stringify(user));
 				localStorage.setItem('platform', platform);
+				localStorage.setItem('expires', expires.toString());
 				text = "Redirecting...";
 				window.location.assign(resolve("/"));
 			}

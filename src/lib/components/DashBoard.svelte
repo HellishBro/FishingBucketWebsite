@@ -8,7 +8,7 @@
 
 <script lang="ts">
 	import { Plus, Save, RotateCcw } from '@lucide/svelte';
-	import type { FluxerUser } from '$lib/user';
+	import type { User } from '$lib/user';
 	import {
 		BatchEdit,
 		DeleteProxyEdit,
@@ -36,7 +36,7 @@
 		user
 	}: {
 		auth: string;
-		user: FluxerUser;
+		user: User;
 	} = $props();
 
 	let edits: IEdit[] = $state([]);
@@ -233,7 +233,7 @@
 			description: null,
 			avatar_url: get_random_avatar(),
 			triggers: ['new: {}'],
-			owner: user.id,
+			owner: user.user.id,
 			times_used: 0,
 			creation_date: Date.now() / 1000,
 			group: null,
@@ -260,7 +260,7 @@
 			id: id,
 			name: 'New Group',
 			description: null,
-			owner: user.id,
+			owner: user.user.id,
 			creation_date: Date.now() / 1000,
 			tag: null,
 			parent: null

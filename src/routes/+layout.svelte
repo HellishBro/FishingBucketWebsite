@@ -5,7 +5,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import { type User, get_user } from '$lib/user';
 	import { onMount, setContext } from 'svelte';
-	import { get_auth } from '$lib/api';
+	import { attempt_refresh_token, get_auth } from '$lib/api';
 
 	let { children } = $props();
 
@@ -15,6 +15,11 @@
 	onMount(() => {
 		auth = get_auth();
 		user = get_user();
+
+		setInterval(async () => {
+			console.log("refresh");
+			await attempt_refresh_token();
+		}, 60_000);
 	});
 
 	setContext("get_user", () => user);
