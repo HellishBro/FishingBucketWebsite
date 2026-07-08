@@ -12,6 +12,7 @@
 	import { onDestroy } from 'svelte';
 	import { page } from "$app/state";
 	import { default as config } from "$lib/config.json";
+	import GitHubIcon from "./GitHubIcon.svelte";
 
 	let auth: string | null = $state(null);
 	let user: User | null = $state(null);
@@ -73,6 +74,12 @@
 		</div>
 
 		<div class="nav-actions">
+			<div class="github">
+				<a href="{config.github}" target="_blank" rel="noopener noreferrer external">
+					<GitHubIcon></GitHubIcon>
+				</a>
+			</div>
+
 			{#if auth && user}
 				<div class="user-menu">
 					<button class="user-info" onclick={() => {

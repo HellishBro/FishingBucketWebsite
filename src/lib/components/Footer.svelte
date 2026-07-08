@@ -25,8 +25,9 @@
 		<div class="footer-section">
 			<h4>Links</h4>
 			<ul>
-				<li><a href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer external">Support Server</a></li>
+				<li><a href="{config.hq_server_invite}" target="_blank" rel="noopener noreferrer external">Support Community</a></li>
 				<li><a href="{config.bot_invite_link}" target="_blank" rel="noopener noreferrer external">Invite Bot</a></li>
+				<li><a href="{config.github}" target="_blank" rel="noopener noreferrer external">GitHub</a></li>
 			</ul>
 		</div>
 
