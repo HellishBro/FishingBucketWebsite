@@ -3,6 +3,14 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"packageManager": "pnpm@11.21.0",
+	"devEngines": {
+		"runtime": {
+			"name": "node",
+			"version": "^24.11.1",
+			"onFail": "download"
+		}
+	},
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build",
@@ -16,11 +24,12 @@
 	"devDependencies": {
 		"@eslint/compat": "^2.0.2",
 		"@eslint/js": "^9.39.2",
+		"@lucide/svelte": "^1.14.0",
 		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/adapter-cloudflare": "^7.2.9",
 		"@sveltejs/kit": "^2.70.2",
 		"@sveltejs/vite-plugin-svelte": "^7.3.0",
 		"@types/node": "^24",
-		"@sveltejs/adapter-cloudflare": "^7.2.9",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.14.0",
@@ -32,7 +41,6 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.54.0",
 		"vite": "^8.2.1",
-		"@lucide/svelte": "^1.14.0",
 		"wrangler": "^4.90.0"
 	}
 }
