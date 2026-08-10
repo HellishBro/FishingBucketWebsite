@@ -74,8 +74,29 @@ button, .button {
     gap: 0.5rem;
 }
 
+button:disabled, .button:disabled {
+    background: var(--accent-primary-disabled);
+    color: var(--text-muted);
+}
+
 button:hover, .button:hover {
     background-color: var(--accent-secondary);
+}
+
+button:disabled:hover, .button:disabled:hover {
+    background: var(--accent-primary-disabled);
+}
+
+.neutered-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.neutered-button:hover {
+    background: transparent;
 }
 
 .dangerous-button {
@@ -90,11 +111,11 @@ button:hover, .button:hover {
 
 .dangerous-button:hover {
     background-color: var(--accent-danger);
-    color: white;
+    color: var(--text-primary);
 }
 
 .dangerous-button:hover svg {
-    stroke: white;
+    stroke: var(--text-primary);
 }
 
 .green-button {
@@ -105,7 +126,7 @@ button:hover, .button:hover {
 
 .green-button:hover {
     background-color: var(--accent-success);
-    color: white;
+    color: var(--text-primary);
     border-color: var(--accent-success);
 }
 
@@ -117,8 +138,17 @@ button:hover, .button:hover {
 
 .yellow-button:hover {
     background-color: var(--accent-warning);
-    color: white;
+    color: var(--text-primary);
     border-color: var(--accent-warning);
+}
+
+.gray-button {
+    background-color: var(--background-primary);
+    border: 2px solid var(--gray-primary);
+}
+
+.gray-button:hover {
+    background-color: var(--gray-secondary);
 }
 
 .discord {
@@ -148,6 +178,7 @@ button:hover, .button:hover {
 .avatar {
     border-radius: 50%;
     overflow: hidden;
+    aspect-ratio: 1;
 }
 
 .wrap-scrollable-container {
@@ -178,9 +209,17 @@ input, textarea, select, option {
     font-size: 1rem;
 }
 
+.error {
+    border-color: var(--accent-danger);
+}
+
 input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: var(--accent-primary);
+}
+
+.error:focus {
+    border-color: var(--accent-danger);
 }
 
 textarea {
@@ -200,6 +239,46 @@ textarea {
 }
 
 .small-button {
-    padding: 5px;
-    height: min-content;
+    padding: 5px 7px;
+}
+
+.h-bar {
+    display: block;
+    width: 100%;
+    border-bottom-style: solid;
+    border-color: var(--border-color);
+    border-width: 2px;
+}
+
+table {
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+th, td {
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+th {
+    background: var(--background-tertiary);
+}
+
+dialog {
+    background-color: var(--background-primary);
+    border: 5px solid var(--border-color);
+    border-radius: 10px;
+    min-width: 40vw;
+    min-height: 35vh;
+    padding: 0;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+dialog .padded {
+    padding: 16px;
 }

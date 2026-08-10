@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { type User } from '$lib/user';
-	import DashBoard from '$lib/components/DashBoard.svelte';
+	import DashBoard from '$lib/components/dashboard/DashBoard.svelte';
 	import { getContext } from 'svelte';
 
 	let auth: string | null = $derived(getContext<() => string | null>("get_auth")());

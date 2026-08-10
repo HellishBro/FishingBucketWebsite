@@ -8,10 +8,10 @@ export class EphemeralID {
 
 export type ID = number | EphemeralID;
 
-export function id_equals(a: ID | null, b: ID | null): boolean {
+export function id_equals(a: ID | null | undefined, b: ID | null | undefined): boolean {
 	if (typeof a == "number" && typeof b == "number") return a == b;
-	else if (a == null || b == null) return a == b;
-	else if (typeof a == "object" && typeof b == "object") return (<EphemeralID>a).index == (<EphemeralID>b).index;
+	else if (a == null || b == null || a == undefined || b == undefined) return a == b;
+	else if (typeof a == "object" && typeof b == "object") return (a as EphemeralID).index == (b as EphemeralID).index;
 	else return false;
 }
 
@@ -19,34 +19,42 @@ export function get_id_string(id: ID): string {
 	if (typeof id == "number") {
 		return "0x" + id.toString(16);
 	}
-	return "new 0x" + id.index.toString(16);
+	return "new+0x" + id.index.toString(16);
 }
 
 export interface Proxy {
 	id: ID;
 	name: string;
-	description: string | null;
+	description: string;
 	avatar_url: string;
 	triggers: string[];
 	owner: string;
 	times_used: number;
 	creation_date: number;
-	group: ID | null;
-	nickname: string | null;
+	nickname: string;
 	effective_name: string;
 	forms: Record<string, string>;
-	current_form: string | null;
-	pronouns: string | null;
+	current_form: string;
+	pronouns: string;
+	tags: ID[];
 }
 
-export interface ProxyGroup {
+export interface ProxyTag {
 	id: ID;
 	name: string;
-	description: string | null;
+	description: string;
 	owner: string;
 	creation_date: number;
-	tag: string | null;
-	parent: ID | null;
+	tag: string;
+}
+
+export function as_normalized_proxy(proxy: Proxy): Proxy {
+	return {
+		...proxy,
+		tags: proxy.tags.filter((t, i) => t != null && proxy.tags.indexOf(t) == i),
+		triggers: proxy.triggers.filter(t => t),
+		forms: Object.fromEntries(Object.entries(proxy.forms).filter(([k, v]) => k != null && v))
+	};
 }
 
 export function get_effective_avatar_url(proxy: Proxy): string {
@@ -54,7 +62,7 @@ export function get_effective_avatar_url(proxy: Proxy): string {
 }
 
 export function get_random_avatar(): string {
-	return `https://raw.githubusercontent.com/fluxerapp/static/refs/heads/main/avatars/${Math.floor(Math.random() * 6)}.png`;
+	return `https://fluxerstatic.com/avatars/${Math.floor(Math.random() * 6)}.png`;
 }
 
 export interface IEdit {
@@ -78,17 +86,17 @@ export class NewProxyEdit implements IEdit {
 	}
 }
 
-export class NewProxyGroupEdit implements IEdit {
-	edit_type = "NEW_PROXY_GROUP";
-	group: ProxyGroup;
+export class NewProxyTagEdit implements IEdit {
+	edit_type = "NEW_PROXY_TAG";
+	tag: ProxyTag;
 
-	constructor(group: ProxyGroup) {
-		this.group = group;
+	constructor(tag: ProxyTag) {
+		this.tag = tag;
 	}
 
 	toJSON(): object {
 		return {
-			group: this.group
+			tag: this.tag
 		}
 	}
 }
@@ -108,38 +116,37 @@ export class DeleteProxyEdit implements IEdit {
 	}
 }
 
-export class DeleteProxyGroupEdit implements IEdit {
-	edit_type = "DELETE_PROXY_GROUP";
-	group_id: ID;
+export class DeleteProxyTagEdit implements IEdit {
+	edit_type = "DELETE_PROXY_TAG";
+	tag_id: ID;
 
-	constructor(group_id: ID) {
-		this.group_id = group_id;
+	constructor(tag_id: ID) {
+		this.tag_id = tag_id;
 	}
 
 	toJSON(): object {
 		return {
-			group_id: this.group_id
+			tag_id: this.tag_id
 		};
 	}
 }
 
 type ProxyFields = {
 	name: string,
-	description: string | null,
+	description: string,
 	avatar_url: string,
 	triggers: string[],
-	group: ID | null,
-	nickname: string | null,
+	nickname: string,
 	forms: Record<string, string>,
-	current_form: string | null,
-	pronouns: string | null
+	current_form: string,
+	pronouns: string,
+	tags: ID[]
 }
 
-type ProxyGroupFields = {
+type ProxyTagFields = {
 	name: string,
-	description: string | null,
-	tag: string | null,
-	parent: ID | null,
+	description: string,
+	tag: string
 }
 
 export class EditProxyFieldEdit<K extends keyof ProxyFields = keyof ProxyFields> implements IEdit {
@@ -165,13 +172,13 @@ export class EditProxyFieldEdit<K extends keyof ProxyFields = keyof ProxyFields>
 	}
 }
 
-export class EditProxyGroupFieldEdit<K extends keyof ProxyGroupFields = keyof ProxyGroupFields> implements IEdit {
-	edit_type = "EDIT_PROXY_GROUP_FIELD";
+export class EditProxyTagFieldEdit<K extends keyof ProxyTagFields = keyof ProxyTagFields> implements IEdit {
+	edit_type = "EDIT_PROXY_TAG_FIELD";
 	id: ID;
 	field: K;
-	value: ProxyGroupFields[K];
+	value: ProxyTagFields[K];
 
-	constructor(id: ID, field: K, value: ProxyGroupFields[K]) {
+	constructor(id: ID, field: K, value: ProxyTagFields[K]) {
 		this.id = id;
 		this.field = field;
 		this.value = value;

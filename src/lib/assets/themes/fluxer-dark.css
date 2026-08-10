@@ -18,6 +18,7 @@
     --text-on-fluxer-brand: #FFFFFF;
     --text-on-fluxer-brand-primary: #1E293B;
     --accent-primary: #8263f1;
+    --accent-primary-disabled: #403177;
     --accent-secondary: #7046e5;
     --accent-tertiary: #9781f8;
     --accent-success: #10B981;
@@ -27,8 +28,11 @@
     --accent-danger: #EF4444;
     --accent-danger-secondary: #DC2626;
     --accent-info: #3B82F6;
+    --accent-info-secondary: #2e75e7;
     --accent-purple: #8B5CF6;
     --markup-mention: #60A5FA;
-    --border-color: #2D2D4A;
+    --border-color: #2b2b4b;
     --card-hover: #252542;
+    --gray-primary: #3b3b3f;
+    --gray-secondary: #28282b;
 }
